@@ -1,0 +1,130 @@
+<%- include("components/frame.ejs") %>
+<!--These divs are used for displaying All the details of the records.-->
+<!--Will be hidden by default, only be visible when clicked on any row item.-->
+<div id="overlay" class="overlay-full-screen hidden" onclick="closeInfo()"></div>
+<div id="info" class="info hidden">
+    <span id="book-title" class="book-title">Book Title Dummy Text</span>
+    <span class="book-detail">Author : <span class=detail-value id="author"> Author Name </span></span>
+    <span class="book-detail">Genre : <span class=detail-value id="genre">  One Word </span></span>
+    <span class="book-detail">Location : <span class=detail-value id="location"> 1L </span></span>
+    <span class="book-detail">Bio : <p class=detail-value id="bio"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, harum mollitia minima nulla repellendus provident quam? Iste commodi eligendi soluta recusandae, nihil corporis mollitia consequuntur natus eaque illo voluptates numquam placeat aperiam sapiente odio expedita autem cumque ducimus unde amet neque omnis. Et, soluta sequi molestias amet tempore neque pariatur eos eaque mollitia sint iusto commodi sit voluptas sed architecto earum? Hic aliquam ad nostrum possimus et explicabo doloribus, culpa corporis tempore libero beatae id veniam soluta eius quibusdam laudantium velit error reiciendis fuga laborum natus facilis neque! Consequuntur corporis soluta, ipsam eveniet ratione  </p></span>
+    <span class="book-detail">Rating : <span class=detail-value id="rating"> 3/5 </span></span>
+    <button onclick="closeInfo()" id="close-info">X</button>
+</div>                  
+
+
+            <div class="form-heading">
+                SiLaKi - WaPo :: Buat Laporan
+            </div>
+            <form action="/search" method="POST" class="search-form"> 
+                <div>
+                    Cari berdasarkan:
+                        <select name="searchField" id="searchField" required>
+                            <option value="">-pilih acuan-</option>
+                            <option value="kod_tech">Kode Teknisi</option>
+                        </select>
+                        Kode Teknisi:<select name="searchValue" type="text" required>
+                            <option value="">---</option>
+                            <option value="SK">SK</option>
+                            <option value="SW">SW</option>
+                            <option value="SB">SB</option>
+                            <option value="KM">KM</option>
+                            <option value="ST">ST</option>
+                            <option value="FQ">FQ</option>
+                            <option value="YH">YH</option>
+                            <option value="LB">LB</option>
+                        </select>
+                        <input type="submit" value="Cari" id="search-button">
+                </div>
+            </form>
+            
+            <div class="table">
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>ID.</th>
+      <th>Tgl Terima</th>
+      <th>Kode Teknisi</th>
+      <th>Job Type</th>
+      <th>No. Model</th>
+      <th>Caliber</th>
+      <th>Point</th>
+                    </tr>
+
+
+                    <% data.forEach((element)=> { %>
+                        <tr id="<%= element._id %>" class="book-rows">
+                            <% if(element.title==" "){ %>
+                                <tr>
+                                <td colspan="4" class="no-result-text"><%= "Data Tidak Ditemukan" %></td>
+                                </tr>
+                            <% } %>
+                            <% if(element.title!=" "){ %>
+                                <td><%= element._id %></td>
+                                <td><%= element.tgl_trm %></td>
+                                <td><%= element.kod_tech %></td>
+                                <td><%= element.job_typ %></td>
+                                <td><%= element.no_model %></td>
+                                <td><%= element.cal %></td>
+                                <td><%= element.point %></td>
+                            <% } %>
+                        </tr>
+                    <% }); %>
+                </table>
+            </div>
+            <button onclick="printTable()">Cetak PDF</button>
+<!-- ... (kode yang sudah ada) ... -->
+
+<!-- Menambahkan skrip pdfmake -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+
+<!-- Menambahkan skrip untuk menangani pencetakan PDF -->
+<script>
+    function printTable() {
+        // Mendefinisikan data tabel
+        const tableData = [
+            ['ID.', 'Tgl Terima', 'Kode Teknisi', 'Job Type', 'No. Model', 'Caliber', 'Point'],
+            // Menambahkan data dari hasil pencarian
+            <% 
+                let totalPoint = 0;
+                data.forEach((element) => { 
+                    totalPoint += parseInt(element.point);
+            %>
+                [
+                    '<%= element._id %>', 
+                    '<%= element.tgl_trm %>', 
+                    '<%= element.kod_tech %>', 
+                    '<%= element.job_typ %>', 
+                    '<%= element.no_model %>', 
+                    '<%= element.cal %>', 
+                    '<%= element.point %>'
+                ],
+            <% }); %>
+        ];
+
+        // Membuat dokumen PDF menggunakan pdfmake
+        const docDefinition = {
+            content: [
+                { text: 'Performance Report ' + '<%= data.length > 0 ? data[0].kod_tech : "" %>', style: 'header' },
+                { text: 'Tanggal: ' + new Date().toLocaleDateString(), style: 'subheader' },
+                { text: 'Total Point: ' + '<%= totalPoint %>', style: 'subheader' }, // Menggunakan template EJS di sini
+                {
+                    style: 'tableExample',
+                    table: {
+                        headerRows: 1,
+                        body: tableData,
+                    },
+                },
+            ],
+            styles: {
+                header: { fontSize: 18, bold: true },
+                subheader: { fontSize: 14, bold: true, margin: [0, 10, 0, 5] },
+                tableExample: { margin: [0, 5, 0, 15] },
+            },
+        };
+
+        // Mencetak dokumen PDF
+        pdfMake.createPdf(docDefinition).open();
+    }
+</script>
+<%- include("components/end.ejs") %>

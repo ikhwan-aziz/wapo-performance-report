@@ -1,0 +1,75 @@
+<%- include("components/frame.ejs") %>
+
+<div class="form-heading">
+    SiLaKi - WaPo :: Record Data Baru
+</div>
+<form action="/add" method="POST" class="add-form">
+    <div class="fields">
+        <div class="fields-column">
+            Kode Teknisi:<p class="add-form-item">
+                <select name="kod_tech" id="rating" required>
+                    <option value="">---</option>
+                    <option value="SK">SK</option>
+                    <option value="SW">SW</option>
+                    <option value="SB">SB</option>
+                    <option value="KM">KM</option>
+                    <option value="ST">ST</option>
+                    <option value="FQ">FQ</option>
+                    <option value="YH">YH</option>
+                    <option value="LB">LB</option>
+                </select>
+            </p> 
+            Tanggal Terima:<p class="add-form-item"> <input name="tgl_trm" type="date" required> </p>
+            No. Model:<p class="add-form-item"> <input name="no_model" type="text" required> </p>
+            </div>
+            <div class="fields-column">
+            Jenis Service:<p class="add-form-item">
+                <select name="job_typ" id="job_typ" required>
+                    <option value="">---</option>
+                    <option value="Overhaul">Overhaul</option>
+                    <option value="Quick-Service">Quick Service</option>
+                </select>
+            </p>
+            Caliber:<p class="add-form-item">
+                <select name="cal" id="rating" required>
+                    <option value="">---</option>
+                    <option value="1230">1230</option>
+                    <option value="1520">1520</option>
+                    <option value="1575">1575</option>
+                    <option value="1600">1600</option>
+                    <option value="1602">1602</option>
+                    <option value="2030">2030</option>
+                    <option value="2135">2135</option>
+                    <option value="2235">2235</option>
+                    <option value="3000">3000</option>
+                    <option value="3035">3035</option>
+                    <option value="3130">3130</option>
+                    <option value="3185">3185</option>
+                    <option value="3235">3235</option>
+                    <option value="3285">3285</option>
+                    <option value="4030">4030</option>
+                    <option value="4130">4130</option>
+                    <option value="9001">9001</option>
+                </select>
+            </p>
+            Point:<p class="add-form-item">
+                <select name="point" id="rating" required>
+                    <option value="">---</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                </select>
+            </p>
+            
+        </div>
+    </div>
+    <span>
+        <input type="submit" value="Simpan">
+    </span>
+    <span class="status-message success"><%= message %></span>
+</form>
+</div>
+
+<%- include("components/end.ejs") %>

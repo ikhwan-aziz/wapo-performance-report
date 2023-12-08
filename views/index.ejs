@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="res/style.css" />
+    <title>WaPo - Performance Report</title>
+  </head>
+  <body>
+    <div class="name-app">
+      <div>SiLaKi - WaPo</div>
+    </div>
+    <div class="container">
+      <div class="form-heading">Silahkan Login !</div>
+      <form action="/login" method="POST" class="login-form">
+        <span class="error"><%= error %></span>
+        <span>
+          <label for="">Masukan Username</label>
+          <input type="text" name="username" id="username-field" placeholder="Username" />
+        </span>
+        <span>
+          <label for="">Masukan Password</label>
+          <input type="text" name="password" id="password-field" placeholder="Password" />
+        </span>
+        <input type="submit" id="login" placeholder="Login" value="Login" />
+      </form>
+    </div>
+  </body>
+  <!-- <script src="res/script.js"></script> -->
+</html>

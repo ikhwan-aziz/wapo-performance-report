@@ -1,0 +1,89 @@
+<%- include("components/frame.ejs") %>
+
+<div class="form-heading">
+    SiLaKi - WaPo :: Edit Data
+</div>
+<form action="/update-id" method="POST" class="update-form">
+    <div>
+        Masukan ID Data:<input name="updateID" type="text" id="update-search-value">
+        <input type="submit" value="Cari" id="update-search-button">
+        <span class="status-message fail"><%= idFail %></span>
+        <div class="form-sub-heading">
+            Perbarui Data
+        </div>
+    </div>
+</form>
+<form action="/update" method="POST" class="update-form-in">
+    <div class="fields update-form-in">
+        <div class="fields-column">
+            <input style="display: none;" type="text" name="_id" value="<%- data[0]._id %>" >
+            Kode Teknisi:<p class="add-form-item">
+                <select name="kod_tech" id="kod_tech" required value="<%- data[0].kod_tech %>">
+                    <option value=""><%- data[0].kod_tech %></option>
+                    <option value="SK">SK</option>
+                    <option value="SW">SW</option>
+                    <option value="SB">SB</option>
+                    <option value="KM">KM</option>
+                    <option value="ST">ST</option>
+                    <option value="FQ">FQ</option>
+                    <option value="YH">YH</option>
+                    <option value="LB">LB</option>
+                </select>
+            </p>
+            Tanggal Terima: <p class="add-form-item"><input type="date" name="tgl_trm" value="<%- data[0].tgl_trm %>" required ></p> 
+            No. Model:<p class="add-form-item"> <input type="text" name="no_model" value=" <%- data[0].no_model %>" required> </p>
+        </div>
+    <div class="fields-column">
+        Job Type:<p class="add-form-item">
+            <select name="job_typ" id="job-typ" required value="<%- data[0].job_typ %>">
+                <option value=""><%- data[0].job_typ %></option>
+                <option value="Overhaul">Overhaul</option>
+                <option value="Quick-Service">Quick Service</option>
+            </select>
+        </p>
+        Caliber:<p class="add-form-item">
+            <select name="cal" id="cal" value="<%- data[0].cal %>" required >
+                <option value=""><%- data[0].cal %></option>
+                <option value="1230">1230</option>
+                    <option value="1520">1520</option>
+                    <option value="1575">1575</option>
+                    <option value="1600">1600</option>
+                    <option value="1602">1602</option>
+                    <option value="2030">2030</option>
+                    <option value="2135">2135</option>
+                    <option value="2235">2235</option>
+                    <option value="3000">3000</option>
+                    <option value="3035">3035</option>
+                    <option value="3130">3130</option>
+                    <option value="3185">3185</option>
+                    <option value="3235">3235</option>
+                    <option value="3285">3285</option>
+                    <option value="4030">4030</option>
+                    <option value="4130">4130</option>
+                    <option value="9001">9001</option>
+            </select>
+        </p>
+        Point:<p class="add-form-item">
+            <select name="point" id="point" value="<%- data[0].point %>" required >
+                <option value=""><%- data[0].point %></option>
+                <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+            </select>
+        </p>
+    </div>
+    <span>
+        Masukan Password:<p class="add-form-item"></p> <input type="text" name="password" value="" required >
+        <input type="submit" value="Perbarui">
+        <p>
+            <span class="status-message success"><%= success %></span>
+            <span class="status-message fail"><%= fail %></span>
+        </p>
+       
+    </span>
+    
+</form>
+
+<%- include("components/end.ejs") %>

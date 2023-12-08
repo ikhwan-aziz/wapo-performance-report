@@ -1,0 +1,42 @@
+<%- include("components/frame.ejs") %>
+
+<!--These divs are used for displaying All the details of the records.-->
+<!--Will be hidden by default, only be visible when clicked on any row item.-->
+<div id="overlay" class="overlay-full-screen hidden" onclick="closeInfo()"></div>
+<div id="info" class="info hidden">
+  <span id="kod_tech" class="book-title">Tech Code</span>
+  <span class="book-detail">Tanggal Terima : <span class="detail-value" id="tgl_trm"> Tanggal </span></span>
+  <span class="book-detail">JOB Type : <span class="detail-value" id="job_typ"> Type </span></span>
+  <span class="book-detail">No. Model : <span class="detail-value" id="no_model"> Model </span></span>
+  <span class="book-detail">Caliber : <span class="detail-value" id="cal"> Caliber </span></span>
+  <span class="book-detail">Point : <span class="detail-value" id="point"> 2 </span></span>
+  <button onclick="closeInfo()" id="close-info">X</button>
+</div>
+
+<div class="form-heading">SiLaKi - WaPo :: Recorded Data</div>
+<div class="table">
+  <table cellspacing="0" cellpadding="0">
+    <tr>
+      <th>ID.</th>
+      <th>Tgl Terima</th>
+      <th>Kode Teknisi</th>
+      <th>Job Type</th>
+      <th>No. Model</th>
+      <th>Caliber</th>
+      <th>Point</th>
+    </tr>
+    <% data.forEach((element) => { %>
+    <tr id="<%= element._id %>" class="data-rows">
+      <td><%= element._id %></td>
+      <td><%= element.tgl_trm %></td>
+      <td><%= element.kod_tech %></td>
+      <td><%= element.job_typ %></td>
+      <td><%= element.no_model %></td>
+      <td><%= element.cal %></td>
+      <td><%= element.point %></td>
+    </tr>
+    <% }); %>
+  </table>
+</div>
+
+<%- include("components/end.ejs") %>
