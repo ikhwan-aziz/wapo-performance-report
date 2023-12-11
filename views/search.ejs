@@ -71,7 +71,9 @@
                     <% }); %>
                 </table>
             </div>
-            <button onclick="printTable()">Cetak PDF</button>
+            <span>
+            <input onclick="printTable()" type="submit" value="Print PDF">
+        </span>
 <!-- ... (kode yang sudah ada) ... -->
 
 <!-- Menambahkan skrip pdfmake -->
@@ -106,8 +108,8 @@
         const docDefinition = {
             content: [
                 { text: 'Performance Report ' + '<%= data.length > 0 ? data[0].kod_tech : "" %>', style: 'header' },
-                { text: 'Tanggal: ' + new Date().toLocaleDateString(), style: 'subheader' },
-                { text: 'Total Point: ' + '<%= totalPoint %>', style: 'subheader' }, // Menggunakan template EJS di sini
+                { text: 'Tanggal Cetak: ' + new Date().toLocaleDateString(), style: 'subheader' },
+                { text: 'Total Point Diperoleh: ' + '<%= totalPoint %>', style: 'subheader' }, // Menggunakan template EJS di sini
                 {
                     style: 'tableExample',
                     table: {
@@ -118,7 +120,7 @@
             ],
             styles: {
                 header: { fontSize: 18, bold: true },
-                subheader: { fontSize: 14, bold: true, margin: [0, 10, 0, 5] },
+                subheader: { fontSize: 14, bold: false, margin: [0, 10, 0, 5] },
                 tableExample: { margin: [0, 5, 0, 15] },
             },
         };
