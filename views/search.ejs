@@ -85,15 +85,15 @@
     function printTable() {
         // Mendefinisikan data tabel
         const tableData = [
-            ['ID.', 'Tgl Terima', 'Kode Teknisi', 'Job Type', 'No. Model', 'Caliber', 'Point'],
+            ['No', 'Tgl Terima', 'Kode Teknisi', 'Job Type', 'No. Model', 'Caliber', 'Point'],
             // Menambahkan data dari hasil pencarian
             <% 
                 let totalPoint = 0;
-                data.forEach((element) => { 
+                data.forEach((element, index) => { 
                     totalPoint += parseInt(element.point);
             %>
                 [
-                    '<%= element._id %>', 
+                    '<%= index + 1 %>',  // Menggunakan nomor urut
                     '<%= element.tgl_trm %>', 
                     '<%= element.kod_tech %>', 
                     '<%= element.job_typ %>', 

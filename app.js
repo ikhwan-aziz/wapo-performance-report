@@ -23,8 +23,8 @@ app.set("view engine", "ejs");
 
 //Connecting to the MongoDB database.
 //useNew.. UseUnified.. were suggested by the server, don't know what they do.
-// mongoose.connect("mongodb+srv://fqbaik:Z3oktWntmd3fXmFn@praktikum.giynsvc.mongodb.net/?retryWrites=true&w=majority", {
-mongoose.connect("mongodb://localhost:27017", {
+mongoose.connect("mongodb+srv://silaki:wapo@silaki-wapo.markhfb.mongodb.net/?retryWrites=true&w=majority", {
+  // mongoose.connect("mongodb://localhost:27017", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
