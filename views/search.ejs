@@ -14,7 +14,7 @@
 
 
             <div class="form-heading">
-                SiLaKi - WaPo :: Buat Laporan
+                SiLaKi - WaPo :: Cari / Buat Laporan
             </div>
             <form action="/search" method="POST" class="search-form"> 
                 <div>
@@ -107,9 +107,10 @@
         // Membuat dokumen PDF menggunakan pdfmake
         const docDefinition = {
             content: [
-                { text: 'Performance Report ' + '<%= data.length > 0 ? data[0].kod_tech : "" %>', style: 'header' },
+                { text: 'SiLaKi - WaPo', style: 'header' },
+                { text: 'Watchmaker & Polisher Performance Report', style: 'header' },
+                { text: 'Tech Code: ' + '<%= data.length > 0 ? data[0].kod_tech : "" %>', style: 'subheader' },
                 { text: 'Tanggal Cetak: ' + new Date().toLocaleDateString(), style: 'subheader' },
-                { text: 'Total Point Diperoleh: ' + '<%= totalPoint %>', style: 'subheader' }, // Menggunakan template EJS di sini
                 {
                     style: 'tableExample',
                     table: {
@@ -117,10 +118,11 @@
                         body: tableData,
                     },
                 },
+                { text: 'Total Point Diperoleh: ' + '<%= totalPoint %>', style: 'subheader' },
             ],
             styles: {
-                header: { fontSize: 18, bold: true },
-                subheader: { fontSize: 14, bold: false, margin: [0, 10, 0, 5] },
+                header: { fontSize: 18, bold: true, alignment: 'center' },
+                subheader: { fontSize: 13, bold: false, margin: [0, 10, 0, 5] },
                 tableExample: { margin: [0, 5, 0, 15] },
             },
         };

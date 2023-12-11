@@ -1,24 +1,22 @@
 <%- include("components/frame.ejs") %>
 
-<div class="form-heading">
-    Delete Book
-</div>
+<div class="form-heading">SiLaKi - WaPo :: Hapus Data</div>
 <form action="/delete" method="POST" class="delete-form">
-<div class="fields">
+  <div class="fields">
     <span>
-        Enter ID: <p class="add-form-item"><input name="_id" type="text" required></p> 
+      Enter ID:
+      <p class="add-form-item"><input name="_id" type="text" required /></p>
     </span>
     <span>
-        Enter Account Password: <p class="add-form-item"><input name="password" type="text" required></p> 
+      Enter Account Password:
+      <p class="add-form-item"><input name="password" type="text" required /></p>
     </span>
-</div>
-<span>
-    <input type="submit" value="Delete">
-</span>
-<span class="status-message success"><%= success %></span>
-<span class="status-message fail"><%= fail %></span>
+  </div>
+  <span>
+    <input type="submit" value="Hapus" />
+  </span>
+  <span class="status-message success"><%= success %></span>
+  <span class="status-message fail"><%= fail %></span>
 </form>
-
-
 
 <%- include("components/end.ejs") %>
