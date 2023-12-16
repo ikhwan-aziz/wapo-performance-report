@@ -13,3 +13,8 @@ Untuk dapat menjalankan source-code ini dari local PC, pastikan:
 5. Jalankan perintah "nodemon" untuk mulai menjalankan aplikasi
 6. Buka browser, lalu akses alamat localhost:3000
 7. Prototype aplikasi siap dijalankan
+8. Masukkan user name : user dan password : 12345
+9. Kemudian anda bisa melakukan pengisian data point teknisi jam tangan sesuai dengan ketentuan
+10. Online live test dapat dilakukan melalui link : https://wapo-performance-report.cyclic.app/
+11. Jika terjadi error setelah login, lihat alamat link dan hapus (.../list) dari alamat lalu tekan enter.
+12. Login kembali ke aplikasi, jika masih error lakukan lagi langkah 11.
